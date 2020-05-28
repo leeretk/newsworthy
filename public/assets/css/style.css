@@ -55,10 +55,16 @@ html{
   nav{
     width: 100%;
   }
+  .btn {
+    color: rgb(104,139,56);
+  }
   .img-card-portfolio {
     float: left;
     margin: 40px;
     padding: 30px;
+  }
+  .alert-warning{
+    background-color: rgb(39,79,114);
   }
   .card-img-top-services{
     color: rgb(39,79,114);
@@ -68,6 +74,13 @@ html{
   .img-aboutMe {
     height: 250px;
     width: 250px;
+  }
+  .navbar {
+    background-color: rgb(104,139,56);
+  }
+  .navbar-brand {
+    color: rgb(104,139,56);
+    font-size: 16px; 
   }
   .nav-pills {
     background-color: rgb(104,139,56);
@@ -173,6 +186,9 @@ html{
   .col-md-3{
     background-color:rgb(104,139,56);
     height: 100%;
+  }
+  .button {
+    color: rgb(104,139,56);
   }
   .no-gutters {
     margin: 40px;

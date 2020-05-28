@@ -14,17 +14,17 @@ var mongojs = require("mongojs");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.connect(MONGODB_URI);
-
-
 // Initialize Express
 var app = express();
 
 // Database configuration
 var databaseUrl = "scraper";
 var collections = ["scrapedData"];
+
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
 
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
@@ -44,6 +44,10 @@ app.get("/", function(req, res) {
 // This route will retrieve all of the data
 // from the scrapedData collection as a json (this will be populated
 // by the data you scrape using the next route)
+app.get("/", function(req, res) {
+  res.send("Hello world");
+});
+
 
 // Route 2
 // =======
@@ -53,6 +57,34 @@ app.get("/", function(req, res) {
 // TIP: Think back to how you pushed website data
 // into an empty array in the last class. How do you
 // push it into a MongoDB collection instead?
+app.get("/all", function(req, res) {
+  // Query: In our database, go to the animals collection, then "find" everything
+  db.mongodb.find({}, function(err, data) {
+    // Log any errors if the server encounters one
+    if (err) {
+      console.log(err);
+    }
+    else {
+      // Otherwise, send the result of this query to the browser
+      res.json(data);
+    }
+  });
+});
+
+app.get("/article", function(req, res) {
+  // Query: In our database, go to the animals collection, then "find" everything
+  db.mongodb.find({}, function(err, data) {
+    // Log any errors if the server encounters one
+    if (err) {
+      console.log(err);
+    }
+    else {
+      // Otherwise, send the result of this query to the browser
+      res.json(data);
+    }
+  });
+});
+
 
 /* -/-/-/-/-/-/-/-/-/-/-/-/- */
 
