@@ -42,3 +42,4 @@ axios.get("https://www.healthcarefinancenews.com/directory/supply-chain/news").t
 // <div class="teaser">The organizations acquired a minority stake in Prestige Ameritech, the largest domestic manufacturer of face…</div>
 
 // <img typeof="foaf:Image" src="https://www.healthcarefinancenews.com/sites/healthcarefinancenews.com/files/styles/news_thumbnail/public/coronavirus_mask_crop_2.jpg?itok=A1OnvmoF" width="190" height="110" alt=""></img> */
+
