@@ -33,3 +33,12 @@ axios.get("https://www.healthcarefinancenews.com/directory/supply-chain/news").t
   // Log the results once you've looped through each of the elements found with cheerio
   console.log(results);
 });
+
+
+// <span class="field-content"><a href="/news/advocate-aurora-health-partners-premier-ramp-domestic-ppe-production">Advocate Aurora Health partners with Premier to ramp up domestic PPE production</a></span>
+
+// /* <div class="date_author">May 26 | Jeff Lagasse</div> */
+
+// <div class="teaser">The organizations acquired a minority stake in Prestige Ameritech, the largest domestic manufacturer of face…</div>
+
+// <img typeof="foaf:Image" src="https://www.healthcarefinancenews.com/sites/healthcarefinancenews.com/files/styles/news_thumbnail/public/coronavirus_mask_crop_2.jpg?itok=A1OnvmoF" width="190" height="110" alt=""></img> */
