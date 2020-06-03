@@ -8,10 +8,6 @@ var cheerio = require("cheerio");
 // Initialize Express
 var app = express();
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/articles_controller.js");
-app.use(routes);
-
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -26,6 +22,7 @@ var db = mongojs(databaseUrl, collections);
 db.on("error", function(error) {
   console.log("Database Error:", error);
 });
+
 
 // Scrape data from one site and place it into the mongodb db
 app.get("/scrape", function(req, res) {
@@ -68,7 +65,6 @@ app.get("/scrape", function(req, res) {
   // Send a "Scrape Complete" message to the browser
   res.send("Scrape Complete");
 });
-
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
