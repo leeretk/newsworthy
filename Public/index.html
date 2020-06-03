@@ -26,11 +26,11 @@
       </li>
 
       <li class="nav-item">
-        <a class="btn scrape-new">SCRAPE NEW ARTICLES!</a>
+        <a class="btn scrape-new" href="./scrape" >Scrape New Articles</a>
       </li>
 
       <li class="nav-item">
-        <a class="btn clear">CLEAR ARTICLES!</a>
+        <a class="btn clear" href="./clear">Clear Articles!</a>
       </li>
       
     </ul>
@@ -38,16 +38,39 @@
 </nav>
 
 <div class="jumbotron text-center">
-  <div class="overlay">
-  </div>
-  <div class="background-image">
-  </div>
+  
+  <div class="overlay"></div>
+
+  <div class="background-image"></div>
+
   <div class="caption">
     <h1>Mongo Scraper</h1>
     <p>Healthcare Supply Chain </p>
   </div>
+  <form action="/submit" method="post">
+    <h1>Hi User!</h1>
+    <h2>Enter a Note!</h2>
+      <input type="text" name="title" placeholder="Title">
+      <textarea type="text" name="body" placeholder="Write Note Here"></textarea>
+
+      <input type="submit">
+      <a href="/notes">See your notes!</a>
+      <a href="/user">See your profile!</a>
+      <a href="/populateduser">See your profile, populated with notes!</a>
+    </form>
+
+
 </div>
-<div class="container-fluid article-container"><div class="alert alert-warning text-center"><h4>Uh Oh. Looks like we don't have any new articles.</h4></div><div class="card"><div class="card-header text-center"><h3>What Would You Like To Do?</h3></div><div class="card-body text-center"><h4><a class="scrape-new">Try Scraping New Articles</a></h4><h4><a href="/saved">Go to Saved Articles</a></h4></div></div></div>
+
+<div class="container-fluid article-container">
+  <div class="alert alert-warning text-center">
+    <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+</div>
+
+<div class="card">
+  <div class="card-header text-center">
+  
+  <h3>What Would You Like To Do?</h3></div><div class="card-body text-center"><h4><a class="scrape-new">Try Scraping New Articles</a></h4><h4><a href="/saved">Go to Saved Articles</a></h4></div></div></div>
 
 <footer class="footer">
   <div class="container">
