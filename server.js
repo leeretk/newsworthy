@@ -66,6 +66,24 @@ app.get("/scrape", function(req, res) {
   res.send("Scrape Complete");
 });
 
+app.get("/", function(req, res) {
+  res.send("Hello world");
+});
+
+app.get("/all", function(req, res) {
+  // Query: In our database, go to the animals collection, then "find" everything
+  db.mongodb.find({}, function(err, data) {
+    // Log any errors if the server encounters one
+    if (err) {
+      console.log(err);
+    }
+    else {
+      // Otherwise, send the result of this query to the browser
+      res.json(data);
+    }
+  });
+});
+
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
