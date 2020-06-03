@@ -1,7 +1,7 @@
 {
   "name": "newsworthy",
   "version": "1.0.0",
-  "description": "",
+  "description": "All the News That's Fit to Scrape",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,7 +24,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "mongojs": "^3.1.0",
-    "mongoose": "^5.9.16",
+    "mongoose": "^5.9.17",
     "nodemon": "^2.0.4"
-  }
+  },
+  "devDependencies": {}
 }
