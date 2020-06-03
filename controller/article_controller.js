@@ -1,73 +1,95 @@
-// Dependencies
 var express = require("express");
-var mongojs = require("mongojs");
-// Require axios and cheerio. This makes the scraping possible
-var axios = require("axios");
-var cheerio = require("cheerio");
 
-// Initialize Express
-var app = express();
+var router = express.Router();
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/articles_controller.js");
-app.use(routes);
+// Import the model (burger.js) to use its database functions.
+var article = require("../models/Article.js");
+var note = require("../models/Note.js");
+var index = require("../models/index.js");
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
 
-// Database configuration
-var databaseUrl = "scraper";
-var collections = ["scrapedData"];
 
-// Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
-db.on("error", function(error) {
-  console.log("Database Error:", error);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Create all our routes and set up logic within those routes where required.
+router.get("/", function(req, res) {
+  burger.all(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
+  });
+  console.log("GET WAS PROCESSED")
 });
 
-// Scrape data from one site and place it into the mongodb db
-app.get("/scrape", function(req, res) {
-  // Make a request via axios to grab the HTML body from the site of your choice
-  axios.get("https://www.healthcarefinancenews.com/directory/supply-chain/news").then(function(response) {
+//create burger model call --- has column names (name and devoured) -- sends the actual value
+router.post("/api/burgers", function(req, res) {
+  burger.create([
+    "burger_name" ,"devoured"], 
+    [
+      req.body.burger_name
+      ,0
+    ]
+      ,function(result) {
+       
+      // Send back the ID of the new burger
+    res.json({ id: result.insertId });
+  });
+  console.log("POST PROCESSED")
+});
 
-  // Load the HTML into cheerio and save it to a variable
-  var $ = cheerio.load(response.data);
 
-  // An empty array to save the data that we'll scrape
-  var results = [];
+router.put("/api/burgers/:id", function(req, res) {
+  var condition = "id = " + req.params.id;   ///has where "condition"
 
-  // Select each element in the HTML body from which you want information.
-  $("span.field-content").each(function(i, element) {
-
-    var title = $(element).children().text();
-    var link = $(element).find("a").attr("href");
-    
-  // If this found element had both a title and a link
-  if (title && link) {
-    // Insert the data in the scrapedData db
-    db.scrapedData.insert({
-      title: title,
-      link: link
+  console.log("condition", condition);
+//sends the value of what to update and then create the condition on ln 27 and pass the condition on line 35. 
+  burger.update(
+    {
+      devoured: 1
     },
-    function(err, inserted) {
-      if (err) {
-        // Log the error if one is encountered during the query
-        console.log(err);
+    condition,
+    function(result) {
+      if (result.changedRows === 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
       }
-      else {
-        // Otherwise, log the inserted data
-        console.log(inserted);
-      }
-    });
-  }
-});
+      res.status(200).end();
+    }
+  );
+  console.log("PUT WAS PROCESSED")
+
 });
 
-  // Send a "Scrape Complete" message to the browser
-  res.send("Scrape Complete");
+router.delete("/api/burgers/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
+
+  burger.delete(condition, function(result) {
+    if (result.affectedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+    console.log("DELETE WAS PROCESS")
+  });
 });
+
+
+
 
 
 // Route for getting all Articles from the db
@@ -164,7 +186,7 @@ app.post("/submit", function(req, res) {
     });
 });
 
-// Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
-});
+
+
+// Export routes for server.js to use.
+module.exports = router;
