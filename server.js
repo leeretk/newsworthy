@@ -71,7 +71,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/all", function(req, res) {
-  // Query: In our database, go to the animals collection, then "find" everything
+  // Query: In our database, go to the articles collection, then "find" everything
   db.mongodb.find({}, function(err, data) {
     // Log any errors if the server encounters one
     if (err) {
