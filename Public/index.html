@@ -1,13 +1,63 @@
-<html lang="en"><head>
-  <title>Mongo Scraper</title>
-  <meta charset="UTF-8">
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Training Resources</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/materia/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+SC" rel="stylesheet">
   <link rel="stylesheet" href="/public/assets/css/style.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <script src="/assets/javascript/index.js"></script>
+  <style>
+    /* jquery-ui overrides */
+    #accordion .ui-widget-content a {
+      color: #A6093D;
+    }
+
+    #accordion .ui-accordion-header {
+      font-size: 1.3em;
+    }
+
+    #accordion .ui-accordion-header-icon {
+      margin-right: 5px;
+    }
+
+    #accordion .ui-state-default {
+      background-color: #BFD0D4;
+      color: #444444 !important;
+    }
+
+    #accordion .ui-state-hover {
+      background-color: #A4BCC2;
+      color: #444444 !important;
+    }
+
+    #accordion .ui-state-active {
+      background-color: #425563;
+      color: white !important;
+      border: 1px solid #768692;
+    }
+
+    #accordion .ui-accordion-content {
+      background-color: #eee;
+    }
+
+    #accordion .ui-accordion-content li {
+      margin-bottom: 5px;
+    }
+
+    /* end jquery-ui overrides */
+
+  </style>
 </head>
 
 <body>
+
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="/">Mongo Scraper</a>
 
@@ -37,53 +87,85 @@
   </div>
 </nav>
 
-<div class="jumbotron text-center">
-  
-  <div class="overlay"></div>
-
-  <div class="background-image"></div>
-
-  <div class="caption">
-    <h1>Mongo Scraper</h1>
-    <p>Healthcare Supply Chain </p>
-  </div>
-  <form action="/submit" method="post">
-    <h1>Hi User!</h1>
-    <h2>Enter a Note!</h2>
-      <input type="text" name="title" placeholder="Title">
-      <textarea type="text" name="body" placeholder="Write Note Here"></textarea>
-
-      <input type="submit">
-      <a href="/notes">See your notes!</a>
-      <a href="/user">See your profile!</a>
-      <a href="/populateduser">See your profile, populated with notes!</a>
-    </form>
-
-
-</div>
-
+<!-- Article Container -->
 <div class="container-fluid article-container">
-  <div class="alert alert-warning text-center">
-    <h4>Uh Oh. Looks like we don't have any new articles.</h4>
-</div>
 
-<div class="card">
-  <div class="card-header text-center">
   
-  <h3>What Would You Like To Do?</h3></div><div class="card-body text-center"><h4><a class="scrape-new">Try Scraping New Articles</a></h4><h4><a href="/saved">Go to Saved Articles</a></h4></div></div></div>
-
-<footer class="footer">
-  <div class="container">
-    <p>Healthcare Supply Chain Scraper</p>
+  <div class="card">
+      <div class="card-header text-center">
+        <h4><a class="scrape-new">Try Scraping New Articles</a></h4><h4><a href="/saved">Go to Saved Articles</a></h4></div></div></div>
   </div>
-</footer>
+  
+  <!-- Heading -->
+  <div class="text-center">
+    <div class="caption">
+      <h1>Healthcare Supply Chain</h1>
+  </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<script src="/assets/javascript/index.js"></script>
+  <div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+  
+    <h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-collapsed ui-corner-all" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0"><span class="title ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>INSERT ARTICLE HEADLINE HERE</h3>
 
+    <div class="row">
+        
+        <div class="col-6">
+          <p class="title">INSERT ARTICLE DATA HERE</p>
 
+          </div>
+           <div class="col-6">
+              <div class="card">
 
+                <form action="/submit" method="post">
+                  <h2>Enter a Note!</h2>
+                  <div>
+                  <textarea type="text" name="body" placeholder="Write Note Here"></textarea>
+                  <input type="submit">
+                </div>
+                </form>
 
-</body></html>
+                <div>
+                  <a href="/notes">See your notes!</a>
+                  <a href="/user">See your profile!</a>
+                  <a href="/populateduser">See your profile, populated with notes!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+  </div>
+ 
+  <footer class="footer">
+    <div class="alert alert-warning text-center">
+      <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+  </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $(function () {
+    var icons = {
+      header: "ui-icon-circle-arrow-e",
+      activeHeader: "ui-icon-circle-arrow-s"
+    };
+
+    $("#accordion").accordion({
+      icons: icons,
+      collapsible: true,
+      heightStyle: "content"
+    });
+
+    $("#toggle").button().on("click", function () {
+      if ($("#accordion").accordion("option", "icons")) {
+        $("#accordion").accordion("option", "icons", null);
+      } else {
+        $("#accordion").accordion("option", "icons", icons);
+      }
+    });
+  });
+  </script>
+
+</body>
+
+</html>
