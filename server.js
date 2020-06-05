@@ -67,7 +67,7 @@ app.get("/scrape", function(req, res) {
 });
 
 app.get("/", function(req, res) {
-  res.send("Hello world");
+  res.send("Newsworthy is Connected");
 });
 
 app.get("/all", function(req, res) {
