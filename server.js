@@ -18,7 +18,6 @@ db.on("error", function(error) {
   console.log("Database Error:", error);
 });
 
-
 // Scrape data from one site and place it into the mongodb db
 app.get("/scrape", function(req, res) {
   // Make a request via axios to grab the HTML body from the site of your choice
@@ -27,40 +26,60 @@ app.get("/scrape", function(req, res) {
   // Load the HTML into cheerio and save it to a variable
   var $ = cheerio.load(response.data);
 
-  // An empty array to save the data that we'll scrape
-  var results = [];
+      // An empty array to save the data that we'll scrape
+      var results = [];
 
+        // Select each element in the HTML body from which you want information. span.field-content
+      $("div.-right-content").each(function(i, element) {
+
+        var date_author = $(element).children().text();
+        var teaser = $(element).children().text();
+
+        // If this found element had both a title and a link
+        if (date_author && teaser) {
+        // Insert the data in the scrapedData db
+        db.scrapedData.insert({
+          date_author: date_author,
+          teaser: teaser,
+        },
+        function(err, inserted) {
+          if (err) {
+            // Log the error if one is encountered during the query
+            console.log(err);
+          }
+          else {
+            // Otherwise, log the inserted data
+            console.log(inserted);
+          }
+        });
+      }
+      });
+      
   // Select each element in the HTML body from which you want information. span.field-content
-$("div.-right-content").each(function(i, element) {
+  $("span.field-content").each(function(i, element) {
 
-  var date_author = $(element).children().text();
-  var link = $(element).find("a").attr("href");
-  var teaser = $(element).children().text();
-  var title = $(element).children().text();
+    var link = $(element).find("a").attr("href");
+    var title = $(element).children().text();
 
-  
-// If this found element had both a title and a link
-if (title && link) {
-  // Insert the data in the scrapedData db
-  db.scrapedData.insert({
-    title: title,
-    date_author: date_author,
-    teaser: teaser,
-    link: link,
-  },
-  function(err, inserted) {
-    if (err) {
-      // Log the error if one is encountered during the query
-      console.log(err);
-    }
-    else {
-      // Otherwise, log the inserted data
-      console.log(inserted);
-    }
+    // If this found element had both a title and a link
+    if (title && link) {
+    // Insert the data in the scrapedData db
+    db.scrapedData.insert({
+      title: title,
+      link: link,
+    },
+    function(err, inserted) {
+      if (err) {
+        // Log the error if one is encountered during the query
+        console.log(err);
+      }
+      else {
+        // Otherwise, log the inserted data
+        console.log(inserted);
+      }
+    });
+  }
   });
-}
-});
-
 });
 
   // Send a "Scrape Complete" message to the browser
