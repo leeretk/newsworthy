@@ -30,31 +30,37 @@ app.get("/scrape", function(req, res) {
   // An empty array to save the data that we'll scrape
   var results = [];
 
-  // Select each element in the HTML body from which you want information.
-  $("span.field-content").each(function(i, element) {
+  // Select each element in the HTML body from which you want information. span.field-content
+$("div.-right-content").each(function(i, element) {
 
-    var title = $(element).children().text();
-    var link = $(element).find("a").attr("href");
-    
-  // If this found element had both a title and a link
-  if (title && link) {
-    // Insert the data in the scrapedData db
-    db.scrapedData.insert({
-      title: title,
-      link: link
-    },
-    function(err, inserted) {
-      if (err) {
-        // Log the error if one is encountered during the query
-        console.log(err);
-      }
-      else {
-        // Otherwise, log the inserted data
-        console.log(inserted);
-      }
-    });
-  }
+  var date_author = $(element).children().text();
+  var link = $(element).find("a").attr("href");
+  var teaser = $(element).children().text();
+  var title = $(element).children().text();
+
+  
+// If this found element had both a title and a link
+if (title && link) {
+  // Insert the data in the scrapedData db
+  db.scrapedData.insert({
+    title: title,
+    date_author: date_author,
+    teaser: teaser,
+    link: link,
+  },
+  function(err, inserted) {
+    if (err) {
+      // Log the error if one is encountered during the query
+      console.log(err);
+    }
+    else {
+      // Otherwise, log the inserted data
+      console.log(inserted);
+    }
+  });
+}
 });
+
 });
 
   // Send a "Scrape Complete" message to the browser
