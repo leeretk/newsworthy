@@ -8,11 +8,6 @@ var cheerio = require("cheerio");
 // Initialize Express
 var app = express();
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
 // Database configuration
 var databaseUrl = "scraper";
 var collections = ["scrapedData"];
