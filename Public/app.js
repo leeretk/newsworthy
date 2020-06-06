@@ -5,10 +5,10 @@ $.getJSON("/articles", function(data) {
     // Display the apropos information on the page
     $("#articles").append(
        "<p data-id='" + data[i]._id + "'>"   
-       + data[i].date_author + "'>"
-       + data[i].title + "'>"
-       + data[i].teaser + "<br />" 
-       + data[i].link + "'>"  
+       + data[i].date_author + " | " + "'>"
+       + data[i].title + " | " + "'>"
+       + data[i].teaser + " | " + "<br />" 
+       + data[i].link + " || "+ "'>"  
        + "</p>"
       );
   }
@@ -29,7 +29,7 @@ $(document).on("click", "p", function(data) {
  
       if (data.date_author && data.title) {
       // The title of the article
-      $("#notes").append("<h4>" + data.date_author + "||" + data.title + "</h4>");
+      $("#notes").append("<h4>" + data.date_author + " | " + data.title + "</h4>");
   
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>"+ "<br />");
 
