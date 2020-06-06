@@ -1,18 +1,19 @@
 {
   "development": {
     "use_env_variable": "MONGODB_URI",
-    "dialect": "mongod"
+    "dialect": "nosql"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "testdb",
     "host": "localhost",
-    "dialect": "mongod",
+    "dialect": "nosql",
     "logging": false
   },
   "production": {
     "use_env_variable": "MONGODB_URI",
-    "dialect": "mongod"
+    "dialect": "nosql"
   }
 }
+
