@@ -6,10 +6,10 @@ $.getJSON("/articles", function(data) {
     $("#articles").append(
        "<p data-id='" + data[i]._id + "'>"   
        + data[i].date_author + "'>"
-       + data[i].title + "<br />" 
-       + data[i].link + "'>"  
+       + data[i].title + "'>"
        + data[i].teaser + "<br />" 
-      + "</p>"
+       + data[i].link + "'>"  
+       + "</p>"
       );
   }
 });
@@ -26,18 +26,25 @@ $(document).on("click", "p", function(data) {
       method: "GET",
       url: "/articles/" + thisId
     }).then(function(data) {
-      console.log(data);
-  
+ 
+      if (data.date_author && data.title) {
       // The title of the article
       $("#notes").append("<h4>" + data.date_author + " | " + data.title + "</h4>");
+      // An input to enter a new title
+      // $("#notes").append("<input id='titleinput' name='title' >");
+      // // A textarea to add a new note body
+      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>"+ "<br />");
+
+      // // A button to submit a new note, with the id of the article saved to it
+      $("#notes").append("<button data-id='" + data._id + "' id='savenote'> Save Note </button>");
 
       if (data.note) {
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      // $("#notes").append("<textarea>" + data.note + "</textarea>");
 
-      // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#bodyinput").val(data.note.body);
       };
+    };
     })});
 
 // When you click the savenote button
