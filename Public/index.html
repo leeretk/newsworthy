@@ -58,10 +58,9 @@
        <li class="nav-item">
         <a class="btn btn-dark" href="./scrape" >Scrape</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="btn btn-dark" href="./clear">Clear</a>
-      </li>
-      
+      </li> -->    
     </ul>
   </div>
 </nav>
@@ -70,38 +69,33 @@
 <!-- Article Container -->
 <div class="container-fluid article-container">
 
-  <div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+  <div id="accordion" class="articletitle aui-accordion ui-widget ui-helper-reset" role="tablist">
   
-    <h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-collapsed ui-corner-all" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0"><span class="span.field-content ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>insert article title here</h3>
+    <h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-collapsed ui-corner-all" 
+    role="tab" 
+    id="ui-id-1" 
+    aria-controls="ui-id-2" 
+    aria-selected="false" 
+    aria-expanded="false" 
+    tabindex="0">
+    <span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>
+    Scraped Articles Here
+  
+    </h3>
 
     <div class="row">
         
         <div class="col-6">
-          <p class="div.-right-content">
-            <div id="articles"></div>
-            <div id="notes"></div>
-          </p>
-
+          <p id=articles></p>
+        </div>
+ 
+        <div class="col-6">
+          <div class="card">
+                <h2>Enter a Note!</h2>
+                <div id="notes"></div>
           </div>
-           <div class="col-6">
-              <div class="card">
-
-                <form action="/submit" method="post">
-                  <h2>Enter a Note!</h2>
-                  <div>
-                  <input type="text" name="title" placeholder="Note Title Here">
-                  <br>
-                  <textarea type="text" name="body" placeholder="Write Note Here"></textarea>
-                  <br>
-                  <input type="submit" id="savenote">
-                </div>
-                </form>
-
-
-              </div>
-            </div>
-          </div>
-    </div>
+        </div>
+       </div>
 
   </div>
  
@@ -109,7 +103,7 @@
     <div class="card-header text-center">
       <h6><a href="/saved">Go to Saved Articles</a>
         &#9830 <a href="/notes">See your notes! </a> 
-        &#9830 <a href="/user">See your profile! </a> 
+        &#9830 <a href="/articles">See your profile! </a> 
         &#9830 <a href="/populateduser">See your profile, populated with notes! </a></h6>
       </div>
 </div>
