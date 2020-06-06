@@ -6,6 +6,7 @@ var logger = require("morgan");
 // Require axios and cheerio. This makes the scraping possible
 var axios = require("axios");
 var cheerio = require("cheerio");
+require("dotenv").config();
 
 // Require all models
 var db = require("./models");
