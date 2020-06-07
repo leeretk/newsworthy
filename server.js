@@ -16,7 +16,6 @@ var PORT = 3000;
 // Initialize Express
 var app = express();
 
-//****************************************//
 //        Configure middleware            //
 //****************************************//
 
@@ -29,9 +28,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/articledb", { useNewUrlParser: true });
+mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds151863.mlab.com:51863/heroku_1mr4g356", { useNewUrlParser: true });
+mongoose.connection.once('open', () => {
+  console.log('connected to database');
+})
 
-//****************************************//
+
 //           SCRAPE DATA                  //
 //****************************************//
 
@@ -69,7 +71,6 @@ app.get("/scrape", function (req, res) {
   res.send("Scrape Complete");
 });
 
-//****************************************//
 //           ROUTES                       //
 //****************************************//
 
