@@ -32,6 +32,8 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 
+
+
 //           SCRAPE DATA                  //
 //****************************************//
 
@@ -71,6 +73,11 @@ app.get("/scrape", function (req, res) {
 
 //           ROUTES                       //
 //****************************************//
+
+// Simple index route
+app.get("/", function(req, res) {
+  res.send(index.html);
+});
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
