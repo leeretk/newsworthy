@@ -27,5 +27,5 @@
 
 3) Users is able to leave comments on the articles displayed and revisit them later.
     a) The comments are saved to the database associated with their articles.
-    b) Users should also be able to delete comments left on articles.
-    c) All stored comments should be visible to every user.
+    b) Users are able to delete comments left on articles.
+    c) All stored comments are visible to every user.
