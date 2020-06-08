@@ -3,14 +3,12 @@ var express = require("express");
 var mongoose = require("mongoose");
 var logger = require("morgan");
 
-// Require axios and cheerio. This makes the scraping possible
-var axios = require("axios");
-var cheerio = require("cheerio");
+
+
 require("dotenv").config();
 
 // Require all models
 var db = require("./models");
-
 var PORT = process.env.PORT || 3000;
 
 
@@ -25,21 +23,28 @@ app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Make public a static folder
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Article", { useNewUrlParser: true });
 
-//Shows all unsaved articles on homepage
-app.get("/", function (req, res) {
-  db.Article.find({ "saved": false }).then(function (dbArticle) {
-    // from the database as the value in an object
-    res.json(db.Article);
-  }).catch(function (err) { 
-    res.json(err) });
+// Route for getting all Articles from the db
+app.get("/", function(req, res) {
+  // Grab every document in the Articles collection
+  db.Article.find({})
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
+
+// Require axios and cheerio. This makes the scraping possible
+var axios = require("axios");
+var cheerio = require("cheerio");
 
 //           SCRAPE DATA                  //
 //****************************************//
