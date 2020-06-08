@@ -3,14 +3,11 @@ var express = require("express");
 var mongoose = require("mongoose");
 var logger = require("morgan");
 
-
-
 require("dotenv").config();
 
 // Require all models
 var db = require("./models");
 var PORT = process.env.PORT || 3000;
-
 
 // Initialize Express
 var app = express();
