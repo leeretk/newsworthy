@@ -28,10 +28,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds151863.mlab.com:51863/heroku_1mr4g356", { useNewUrlParser: true });
-mongoose.connection.once('open', () => {
-  console.log('connected to database');
-})
+mongoose.connect("mongodb://localhost/articledb", { useNewUrlParser: true });
 
 
 //           SCRAPE DATA                  //
