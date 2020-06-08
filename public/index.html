@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Supply Chain News</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+SC">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand text-center" href="/">Healthcare Supply Chain Scraper</a>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="btn btn-dark" href="./scrape">Scrape</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="btn btn-dark" href="./clear">Clear</a>
+        </li> -->
+        </ul>
+      </div>
+    </nav>
+
+    <br>
+    <!-- Article Container -->
+    <div class="container-fluid article-container">
+
+      <div id="accordion" class="articletitle aui-accordion ui-widget ui-helper-reset" role="tablist">
+
+        <h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-collapsed ui-corner-all"
+          role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="0">
+          <span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>
+          Scraped Articles Here (click an article to add a note)
+
+        </h3>
+
+        <div class="row">
+
+          <div class="col-6">
+            <p class="text-dark bg-light" id=articles></p>
+          </div>
+
+          <div class="col-6">
+            <div class="card">
+              <h2 class="bg-primary" style="color: rgb(9, 26, 32);">Enter a Comment!</h2>
+              <div class="notebox" id="notes"></div>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+
+      <div class="card">
+        <div class="card-header text-center">
+          <h6>
+            <a href="/articles">Go to Saved Articles</a>
+            &#9830 <a href="https://leeretk.github.io">See your profile! </a>
+            &#9830 <a href="https://www.healthcarefinancenews.com/directory/supply-chain/news?page=2">Healthcare Finance News </a>           
+          </h6>
+        </div>
+      </div>
+
+      <footer class="footer"></footer>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="app.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>
+        $(function () {
+          var icons = {
+            header: "ui-icon-circle-arrow-e",
+            activeHeader: "ui-icon-circle-arrow-s"
+          };
+
+          $("#accordion").accordion({
+            icons: icons,
+            collapsible: true,
+            heightStyle: "content"
+          });
+
+          $("#toggle").button().on("click", function () {
+            if ($("#accordion").accordion("option", "icons")) {
+              $("#accordion").accordion("option", "icons", null);
+            } else {
+              $("#accordion").accordion("option", "icons", icons);
+            }
+          });
+        });
+      </script>
+
+  </body>
+
+</html>
