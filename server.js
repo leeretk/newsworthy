@@ -29,9 +29,16 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Article", { useNewUrlParser: true });
 
-
+//Shows all unsaved articles on homepage
+app.get("/", function (req, res) {
+  db.Article.find({ "saved": false }).then(function (dbArticle) {
+    // from the database as the value in an object
+    res.json(db.Article);
+  }).catch(function (err) { 
+    res.json(err) });
+});
 
 
 //           SCRAPE DATA                  //
@@ -74,10 +81,6 @@ app.get("/scrape", function (req, res) {
 //           ROUTES                       //
 //****************************************//
 
-// Simple index route
-app.get("/", function(req, res) {
-  res.send(index.html);
-});
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
